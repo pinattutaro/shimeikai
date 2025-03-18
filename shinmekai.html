@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        @font-face {
+            font-family: "mincho";
+            src: url('dl_font/築豊初号明朝.ttf');
+        }
+
+        @font-face {
+            font-family: "mplus-r";
+            src: url("dl_font/MPLUS1-Regular.ttf");
+        }
+
+        @font-face {
+            font-family: "mplus-sb";
+            src: url("dl_font/MPLUS1-SemiBold.ttf");
+        }
+
+        @font-face {
+            font-family: "line";
+            src: url("dl_font/LINESeedJP_TTF_Rg.ttf");
+        }
+
+        body {
+            width: 100vw;
+            /* height: 100vh; */
+            padding: 0px;
+            margin: 0px;
+            display: grid;
+            place-items: center;
+            overflow-x: hidden;
+
+            & * {
+                position: relative;
+            }
+        }
+
+        #dictionary {
+            --dic-width: 50vw;
+            --aspect: calc(19.5 / 14.3);            
+            --dic-height: calc(var(--dic-width) * var(--aspect));
+            --centimeter: calc(var(--dic-height) / 19.5);
+            width: var(--dic-width);
+            height: var(--dic-height);
+            border: solid 1px #ccc;
+            padding-top: var(--centimeter);
+            font-family: "mincho";
+            background-color: #F0F4F1;
+
+            display: grid;
+            grid-template-rows: calc(var(--centimeter)*4.5) calc(var(--centimeter)*0.8) calc(var(--centimeter)*2.2) calc(var(--centimeter)*2.1) calc(var(--centimeter)*1.8) calc(var(--centimeter)*0.4);
+            justify-items: center;
+
+            #title {
+                color: #E4B757;
+                font-size: calc(var(--centimeter)*4.3);
+                line-height: calc(var(--centimeter)*4.5);
+            }
+
+            #rub {
+                color: #B92323;
+                font-size: calc(var(--centimeter)*0.3);
+                line-height: calc(var(--centimeter)*0.8);
+                letter-spacing: calc(var(--centimeter)*0.7);
+            }
+
+            #sub {
+                color: #E4B757;
+                font-size: calc(var(--centimeter)*2.2);
+                line-height: calc(var(--centimeter)*2.2);
+            }
+
+            #author {
+                font-size: calc(var(--centimeter)*0.4);
+                color: black;
+                padding: calc(var(--centimeter)*0.5) 0;
+
+                display: grid;
+                grid-template-columns: repeat(3, auto);
+                grid-template-rows: repeat(2, calc(var(--centimeter)*0.4));
+                gap: calc(var(--centimeter)*0.3);
+                justify-content: center;
+            }
+
+            #series {
+                display: grid;
+                align-items: center;
+                font-size: calc(var(--centimeter)*0.4);
+                color: #6A6E6B;
+                grid-template-columns: repeat(3, auto);   
+                padding: calc(var(--centimeter)*0.3) 0;                     
+
+                & * {
+                    display: inline-block;
+                }
+
+                & > div {
+                    height: calc(var(--centimeter)*1.2);
+                    width: calc(var(--centimeter)*1.5);
+                    background-color: #561404;
+
+                    & > div {
+                        width: 100%;
+                        height: 100%;
+                        background-color: #F0F4F1;
+                        text-align: center;
+                        color: #B92323;
+                        font-size: calc(var(--centimeter)*0.9);
+                        line-height: calc(var(--centimeter)*1.2);
+                        clip-path: polygon(0 50%, calc(var(--centimeter)*0.6) 101%, calc(var(--centimeter)*0.9) 101%, 100% 50%, calc(var(--centimeter)*0.9) -1%, calc(var(--centimeter)*0.6) -1%);
+                    }
+                }
+            }
+
+            #color {
+                font-size: calc(var(--centimeter)*0.4);
+                font-family: "mplus-r";
+            }
+
+            #company {
+                height: calc(var(--centimeter)*0.8);
+                line-height: calc(var(--centimeter)*0.8);
+                font-size: calc(var(--centimeter)*0.6);
+                padding: 0 calc(var(--centimeter)*0.2);
+                font-family: "line";
+                font-weight: bold;
+                background-color: black;
+                color: #F0F4F1;
+                border-radius: calc(var(--centimeter)*0.4);
+                position: absolute;
+                bottom: calc(var(--centimeter)*0.5);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div id="dictionary">
+        <div id="title">
+            新明解
+        </div>
+        <div id="rub">
+            SHINMEIKA<span style="letter-spacing: 0px;">I</span>
+        </div>
+        <div id="sub">
+            国語辞典
+        </div>
+        <div id="author">
+            <div>山田忠雄</div>
+            <div>倉持保男</div>
+            <div>上野善道</div>
+            <div>山田明雄</div>
+            <div>井島正博</div>
+            <div>笹原宏之</div>
+        </div>
+        <div id="series">第<div><div>八</div></div>版</div>
+        <div id="color">[<span style="font-family: 'mplus-sb';">白版</span>]</div>
+        <div id="company">三省堂</div>
+    </div>
+</body>
+</html>
