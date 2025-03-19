@@ -80,12 +80,12 @@
             &:hover {
                 transform: rotateY(40deg);
 
-                & > #dictionary {
-                    opacity: 0.9;
+                & > #dictionary::after {
+                    opacity: 0.1;
                 }
 
-                & > #side {
-                    opacity: 0.8;
+                & > #side::after {
+                    opacity: 0.2;
                 }
             }
         }
@@ -99,16 +99,26 @@
             box-sizing: border-box;
             position: absolute;
             left: calc(var(--centimeter)*-4.2);
-            opacity: 0.5;
 
             display: grid;
             grid-template-rows: calc(var(--centimeter)*6) calc(var(--centimeter)*0.5) calc(var(--centimeter)*8) calc(var(--centimeter)*1.4) calc(var(--centimeter)*0.3);;
             justify-items: center;
 
             transform-origin: 100% 50%;
-            /* transition: transform 0.5s; */
-            transition: opacity var(--anime-duration);
             transform: rotateY(-90deg);
+
+            &::after {
+                position: absolute;
+                left: 0px;
+                top: 0px;
+                width: 100%;
+                height: 100%;
+                content: "";
+                background-color: black;
+                opacity: 0.5;
+                transition: opacity var(--anime-duration);
+                z-index: 100;
+            }
 
             #s-title {
                 font-size: calc(var(--centimeter)*2);
@@ -188,24 +198,23 @@
             box-sizing: border-box;
             position: absolute;
             left: 0px;
-            opacity: 1;
 
             display: grid;
             grid-template-rows: calc(var(--centimeter)*4.5) calc(var(--centimeter)*0.8) calc(var(--centimeter)*2.2) calc(var(--centimeter)*2.1) calc(var(--centimeter)*1.8) calc(var(--centimeter)*0.4);
             justify-items: center;
 
-            transform-origin: 0 50%;
-            transition: opacity var(--anime-duration);
-            /* transition: transform 0.5s;
-            transform: rotateY(40deg); */
-
-            /* &:hover {
-                transform: rotateY(0deg);
-
-                & ~ #side {
-                    transform: rotateY(90deg);
-                }
-            } */
+            &::after {
+                position: absolute;
+                left: 0px;
+                top: 0px;
+                width: 100%;
+                height: 100%;
+                content: "";
+                background-color: black;
+                opacity: 0;
+                transition: opacity var(--anime-duration);
+                z-index: 100;
+            }
 
             #title {
                 color: var(--gold);
