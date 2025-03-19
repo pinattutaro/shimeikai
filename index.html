@@ -31,11 +31,13 @@
             --dic-height: calc(var(--dic-width) * var(--aspect));
             --centimeter: calc(var(--dic-height) / 19.5);
             --base-color: #F0F4F1;
+            /* --base-color: white; */
             --gold: #E4B757;
             --red: #B92323;
             --crimson: #561404;
             --gray: #6A6E6B;
             --shorter: min(50vh, 50vw);
+            --light-size: calc(var(--shorter)*1);
         }
 
         body {
@@ -61,7 +63,7 @@
                 width: 100%;
                 height: 100%;
                 z-index: 1000;
-                background: radial-gradient(var(--shorter) var(--shorter) at center, white, black);
+                background: radial-gradient(var(--light-size) var(--light-size) at center, white, black);
                 opacity: 0.2;
                 pointer-events: none;
             }
