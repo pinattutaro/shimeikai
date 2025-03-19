@@ -35,6 +35,7 @@
             --red: #B92323;
             --crimson: #561404;
             --gray: #6A6E6B;
+            --shorter: min(50vh, 50vw);
         }
 
         body {
@@ -46,7 +47,7 @@
             place-items: center;
             place-content: center;
             overflow-x: hidden;
-            background: radial-gradient(50vh 50vh at center,white, black);
+            background: radial-gradient(var(--shorter) var(--shorter) at center,white, black);
 
             & * {
                 position: relative;
@@ -60,7 +61,7 @@
                 width: 100%;
                 height: 100%;
                 z-index: 1000;
-                background: radial-gradient(50vh 50vh at center, white, black);
+                background: radial-gradient(var(--shorter) var(--shorter) at center, white, black);
                 opacity: 0.2;
                 pointer-events: none;
             }
