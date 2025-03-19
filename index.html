@@ -46,9 +46,23 @@
             place-items: center;
             place-content: center;
             overflow-x: hidden;
+            background: radial-gradient(50vh 50vh at center,white, black);
 
             & * {
                 position: relative;
+            }
+
+            &::before {
+                content: "";
+                position: absolute;
+                left: 0px;
+                top: 0px;
+                width: 100%;
+                height: 100%;
+                z-index: 1000;
+                background: radial-gradient(50vh 50vh at center, white, black);
+                opacity: 0.2;
+                pointer-events: none;
             }
         }
 
@@ -58,11 +72,6 @@
             transition: transform 0.5s;
             width: var(--dic-width);
             height: var(--dic-height);
-                    
-            & > div {
-                float: right;
-                border: solid 1px #ddd;
-            }
 
             &:hover {
                 transform: rotateY(30deg);
