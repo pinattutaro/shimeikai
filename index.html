@@ -58,8 +58,6 @@
             transition: transform 0.5s;
             width: var(--dic-width);
             height: var(--dic-height);
-            display: block;
-            color: black;
                     
             & > div {
                 float: right;
@@ -93,6 +91,8 @@
                 font-size: calc(var(--centimeter)*2);
                 color:  var(--gold);
                 writing-mode: vertical-lr;
+                display: block;
+                text-decoration: none;
             }
 
             #s-rub {
@@ -262,7 +262,7 @@
     </style>
 </head>
 <body>
-    <a id="main" href="https://search.dual-d.net/SMK/main.cgi">
+    <div id="main">
         <div id="dictionary">
             <div id="title">
                 新明解
@@ -287,14 +287,14 @@
         </div>      
         
         <div id="side">
-            <div id="s-title">新明解</div>
+            <a id="s-title" href="https://search.dual-d.net/SMK/main.cgi">新明解</a>
             <div id="s-rub">SINMEIKA<span style="letter-spacing: 0;">I</span></div>
             <div id="s-sub">国語辞典</div>
             <div id="s-series">第<div><div>八</div></div>版</div>
             <div id="s-color">[<span style="font-family: 'mplus-sb';">白版</span>]</div>
             <div id="s-company">三省堂</div>
         </div>       
-    </a>
+    </div>
 
 </body>
 </html>
