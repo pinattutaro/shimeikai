@@ -55,6 +55,11 @@
 
             & * {
                 position: relative;
+
+                &::after {
+                    pointer-events: none;
+                    user-select: none;
+                }
             }
 
             &::before {
@@ -68,6 +73,7 @@
                 background: radial-gradient(var(--light-size) var(--light-size) at center, white, black);
                 opacity: 0.2;
                 pointer-events: none;
+                user-select: none;
             }
         }
 
@@ -214,6 +220,10 @@
                 opacity: 0;
                 transition: opacity var(--anime-duration);
                 /* z-index: 100; */
+            }
+
+            & > div {
+                cursor: text;
             }
 
             #title {
