@@ -36,9 +36,11 @@
             --red: #B92323;
             --crimson: #561404;
             --gray: #6A6E6B;
+            --pink: #AC383F;
             --shorter: min(50vh, 50vw);
             --light-size: calc(var(--shorter)*1);
             --anime-duration: 0.5s;
+            --angle: 40deg;
         }
 
         body {
@@ -47,18 +49,66 @@
             padding: 0px;
             margin: 0px;
             display: grid;
-            place-items: center;
-            place-content: center;
+            grid-template-columns: 1fr var(--dic-width) 1fr;
+            grid-template-rows: 1fr var(--dic-height) 1fr;
+            grid-template-areas: ". . ." ". main ." ". . .";
+            /* place-items: center;
+            place-content: center; */
             overflow-x: hidden;
             background: radial-gradient(var(--shorter) var(--shorter) at center,white, black);
             perspective: 1000px;
 
             & * {
                 position: relative;
+            }
 
-                &::after {
-                    pointer-events: none;
-                    user-select: none;
+            & > .hov {
+                &:hover {
+                    & ~ #main > div {
+                        &:not(#dictionary, #back)::after {
+                            opacity: 0.2 !important;
+                        }
+
+                        #dictionary::after {
+                            opacity: 0.1 !important;
+                        }
+
+                        #back::after {
+                            opacity: 0.5 !important;
+                        }
+                    }
+                }
+
+                &:nth-child(1):hover ~ #main {
+                    transform: rotateX(var(--angle)) rotateY(calc(var(--angle)*-1));
+                }
+
+                &:nth-child(2):hover ~ #main {
+                    transform: rotateX(var(--angle));
+                }
+
+                &:nth-child(3):hover ~ #main {
+                    transform: rotateX(var(--angle)) rotateY(var(--angle));
+                }
+
+                &:nth-child(4):hover ~ #main {
+                    transform: rotateY(calc(var(--angle)*-1));
+                }
+
+                &:nth-child(5):hover ~ #main {
+                    transform: rotateY(var(--angle));
+                }
+
+                &:nth-child(6):hover ~ #main {
+                    transform: rotateX(calc(var(--angle)*-1)) rotateY(calc(var(--angle)*-1));
+                }
+
+                &:nth-child(7):hover ~ #main {
+                    transform: rotateX(calc(var(--angle)*-1));
+                }
+
+                &:nth-child(8):hover ~ #main {
+                    transform: rotateX(calc(var(--angle)*-1)) rotateY(var(--angle));
                 }
             }
 
@@ -82,8 +132,29 @@
             width: var(--dic-width);
             height: var(--dic-height);
             transform-style: preserve-3d;
+            grid-area: main;
 
-            &:hover {
+            & > div {
+                &::after {
+                    pointer-events: none;
+                    user-select: none;
+
+                    position: absolute;
+                    left: 0px;
+                    top: 0px;
+                    width: 100%;
+                    height: 100%;
+                    content: "";
+                    background-color: black;
+                    transition: opacity var(--anime-duration);
+                }
+
+                &:not(#dictionary, #back)::after {
+                    opacity: 0.5;
+                }
+            }
+
+            /* &:hover {
                 transform: rotateY(40deg);
 
                 & > #dictionary::after {
@@ -93,7 +164,7 @@
                 & > #side::after {
                     opacity: 0.2;
                 }
-            }
+            } */
         }
 
         #side {
@@ -104,7 +175,7 @@
             padding: calc(var(--centimeter)*0.5) 0;
             box-sizing: border-box;
             position: absolute;
-            left: calc(var(--centimeter)*-4.2);
+            right: var(--dic-width);
 
             display: grid;
             grid-template-rows: calc(var(--centimeter)*6) calc(var(--centimeter)*0.5) calc(var(--centimeter)*8) calc(var(--centimeter)*1.4) calc(var(--centimeter)*0.3);;
@@ -112,19 +183,6 @@
 
             transform-origin: 100% 50%;
             transform: rotateY(-90deg);
-
-            &::after {
-                position: absolute;
-                left: 0px;
-                top: 0px;
-                width: 100%;
-                height: 100%;
-                content: "";
-                background-color: black;
-                opacity: 0.5;
-                transition: opacity var(--anime-duration);
-                /* z-index: 100; */
-            }
 
             #s-title {
                 font-size: calc(var(--centimeter)*2);
@@ -210,20 +268,7 @@
             justify-items: center;
 
             &::after {
-                position: absolute;
-                left: 0px;
-                top: 0px;
-                width: 100%;
-                height: 100%;
-                content: "";
-                background-color: black;
                 opacity: 0;
-                transition: opacity var(--anime-duration);
-                /* z-index: 100; */
-            }
-
-            & > div {
-                cursor: text;
             }
 
             #title {
@@ -303,9 +348,111 @@
                 bottom: calc(var(--centimeter)*0.5);
             }
         }
+
+        .tb {
+            width: var(--dic-width);
+            height: calc(var(--centimeter)*4.2);
+            display: grid;
+            align-items: center;
+            position: absolute;
+            left: 0px;
+            background-color: var(--base-color);
+            
+            &#bottom {
+                top: var(--dic-height);
+                transform-origin: 50% 0%;
+                transform: rotateX(-90deg);
+            }
+
+            &#top {
+                bottom: var(--dic-height);
+                transform-origin: 50% 100%;
+                transform: translateZ(calc(var(--centimeter)*-4.2)) rotateX(-90deg);
+            }
+
+            & > .tb-contents {
+                height: calc(var(--centimeter)*1.7);
+                width: 100%;
+                display: grid;
+                place-items: center;
+                font-family: "mincho";
+
+                .tb-title {
+                    background-color: black;
+                    border-radius: calc(var(--centimeter)*0.4);
+                    color: var(--pink);
+                    font-size: calc(var(--centimeter)*0.6);
+                    padding: 0 calc(var(--centimeter)*0.2);
+                    line-height: calc(var(--centimeter)*0.8);
+                    
+                    .tb-color {
+                        position: absolute;
+                        left: calc(100% + var(--centimeter)*0.2);
+                        top: 0px;
+                        white-space: nowrap;
+                        color: black;
+                        font-size: calc(var(--centimeter)*0.4);
+                        font-family: "mplus-r";
+                    }
+                }
+
+                .tb-series {
+                    height: calc(var(--centimeter)*0.9);
+                    font-size: calc(var(--centimeter)*0.2);
+                    padding: calc(var(--centimeter)*0.1) 0;
+                    display: grid;
+                    grid-template-columns: repeat(3, auto);
+                    align-items: center;
+                    align-content: center;
+                    color: var(--gray);
+
+                    & > div {
+                        display: inline-block;
+                        width: calc(var(--centimeter)*0.9);
+                        height: calc(var(--centimeter)*0.7);
+                        background-color: var(--crimson);
+
+                        & > div {
+                            display: inline-block;
+                            width: 100%;
+                            height: 100%;
+                            background-color: var(--base-color);
+                            text-align: center;
+                            color: var(--red);
+                            font-size: calc(var(--centimeter)*0.5);
+                            line-height: calc(var(--centimeter)*0.7);
+                            clip-path: polygon(0 50%, calc(var(--centimeter)*0.35) 101%, calc(var(--centimeter)*0.55) 101%, 100% 50%, calc(var(--centimeter)*0.55) -1%, calc(var(--centimeter)*0.35) -1%);
+                        }
+                    }
+                }
+            }
+        }
+
+        #back {
+            width: var(--dic-width);
+            height: var(--dic-height);
+            background-color: var(--base-color);
+            position: absolute;
+            left: 0px;
+            top: 0px;
+            transform: translateZ(calc(var(--centimeter)*-4.2)) rotateY(180deg);
+
+            &::after {
+                opacity: 0.5;
+            }
+        }
+
     </style>
 </head>
 <body>
+    <div class="hov" id="tl"></div>
+    <div class="hov" id="t"></div>
+    <div class="hov" id="tr"></div>
+    <div class="hov" id="l"></div>
+    <div class="hov" id="r"></div>
+    <div class="hov" id="bl"></div>
+    <div class="hov" id="b"></div>
+    <div class="hov" id="br"></div>
     <div id="main">
         <div id="dictionary">
             <div id="title">
@@ -337,7 +484,23 @@
             <div id="s-series">第<div><div>八</div></div>版</div>
             <div id="s-color">[<span style="font-family: 'mplus-sb';">白版</span>]</div>
             <div id="s-company">三省堂</div>
-        </div>       
+        </div>    
+        
+        <div id="bottom" class="tb">
+            <div class="tb-contents">
+                <div class="tb-title">新明解国語辞典<div class="tb-color">[<span style="font-family: 'mplus-sb';">白版</span>]</div></div>
+                <div class="tb-series">第<div><div>八</div></div>版</div>                
+            </div>
+        </div>  
+
+        <div id="top" class="tb">
+            <div class="tb-contents">
+                <div class="tb-title">新明解国語辞典<div class="tb-color">[<span style="font-family: 'mplus-sb';">白版</span>]</div></div>
+                <div class="tb-series">第<div><div>八</div></div>版</div>                
+            </div>
+        </div>  
+        
+        <div id="back"></div>
     </div>
 
 </body>
