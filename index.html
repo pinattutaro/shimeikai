@@ -51,6 +51,7 @@
             place-content: center;
             overflow-x: hidden;
             background: radial-gradient(var(--shorter) var(--shorter) at center,white, black);
+            perspective: 500px;
 
             & * {
                 position: relative;
@@ -71,11 +72,10 @@
         }
 
         #main {
-            transform-style: preserve-3d;
-            perspective: 10000px;
             transition: transform var(--anime-duration);
             width: var(--dic-width);
             height: var(--dic-height);
+            transform-style: preserve-3d;
 
             &:hover {
                 transform: rotateY(40deg);
@@ -117,7 +117,7 @@
                 background-color: black;
                 opacity: 0.5;
                 transition: opacity var(--anime-duration);
-                z-index: 100;
+                /* z-index: 100; */
             }
 
             #s-title {
@@ -213,7 +213,7 @@
                 background-color: black;
                 opacity: 0;
                 transition: opacity var(--anime-duration);
-                z-index: 100;
+                /* z-index: 100; */
             }
 
             #title {
