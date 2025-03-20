@@ -65,15 +65,23 @@
             & > .hov {
                 &:hover {
                     & ~ #main > div {
-                        &:not(#dictionary, #back)::after {
+                        &#side::after {
                             opacity: 0.2 !important;
                         }
 
-                        #dictionary::after {
+                        &#bottom::after {
+                            opacity: 0.25 !important;
+                        }
+
+                        &#top::after {
+                            opacity: 0.15 !important;
+                        }
+
+                        &#dictionary::after {
                             opacity: 0.1 !important;
                         }
 
-                        #back::after {
+                        &#back::after {
                             opacity: 0.5 !important;
                         }
                     }
