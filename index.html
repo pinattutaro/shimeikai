@@ -26,7 +26,7 @@
         }
 
         :root {
-            --dic-width: 30vw;
+            --dic-width: 20vw;
             --aspect: calc(19.5 / 14.3);            
             --dic-height: calc(var(--dic-width) * var(--aspect));
             --centimeter: calc(var(--dic-height) / 19.5);
@@ -375,7 +375,7 @@
             &#top {
                 bottom: var(--dic-height);
                 transform-origin: 50% 100%;
-                transform: translateZ(calc(var(--centimeter)*-4.2)) rotateX(-90deg);
+                transform: translateZ(calc(var(--centimeter)*-4.2)) rotateY(180deg) rotateX(90deg);
             }
 
             & > .tb-contents {
