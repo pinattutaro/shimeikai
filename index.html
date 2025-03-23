@@ -37,8 +37,6 @@
             --crimson: #561404;
             --gray: #6A6E6B;
             --pink: #AC383F;
-            --shorter: min(50vh, 50vw);
-            --light-size: calc(var(--shorter)*1);
             --anime-duration: 0.5s;
             --angle: 40deg;
         }
@@ -55,7 +53,8 @@
             /* place-items: center;
             place-content: center; */
             overflow-x: hidden;
-            background: radial-gradient(var(--shorter) var(--shorter) at center,white, black);
+            /* background: radial-gradient(50vh 50vh at center,white, black); */
+            background-color: black;
             perspective: 1000px;
 
             & * {
@@ -128,8 +127,8 @@
                 width: 100%;
                 height: 100%;
                 z-index: 1000;
-                background: radial-gradient(var(--light-size) var(--light-size) at center, white, black);
-                opacity: 0.2;
+                background: radial-gradient(30vw 200vh at 50vw 100vh, white, black);
+                opacity: 0.5;
                 pointer-events: none;
                 user-select: none;
             }
